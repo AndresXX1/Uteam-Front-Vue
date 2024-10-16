@@ -1,26 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to dev test"/>
+  <div id="app">
+    <DashboardComponent />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import DashboardComponent from './components/dashboard-component.vue'
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    DashboardComponent
   }
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&display=swap');
+
+body {
+  font-family: 'Avenir', sans-serif;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 </style>

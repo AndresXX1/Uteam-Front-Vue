@@ -1,11 +1,16 @@
 <template>
     <div class="cards">
-      <Card v-for="hero in heroes" :key="hero.id" :hero="hero" />
+      <Card
+        v-for="hero in heroes"
+        :key="hero.id"
+        :hero="hero"
+        @add-hero="addHeroToDashboard"
+      />
     </div>
   </template>
   
   <script>
-  import Card from './card.vue';
+  import Card from './card-item.vue';
   import axios from 'axios';
   
   export default {
@@ -26,6 +31,9 @@
         } catch (error) {
           console.error(error);
         }
+      },
+      addHeroToDashboard(hero) {
+        this.$emit('add-hero', hero);
       }
     }
   };
