@@ -55,45 +55,45 @@
   <style scoped>
   .DetailItem {
     text-align: center;
-    font-family: 'Arial', sans-serif; /* Cambia a la fuente deseada */
+    font-family: 'Arial', sans-serif; 
   }
   
   .back-button {
     position: absolute;
-    top: 100px; /* Ajusta la posición más cerca de la imagen */
-    left: 300px; /* Ajusta según sea necesario */
+    top: 100px; 
+    left: 300px; 
     display: flex;
     align-items: center;
-    text-decoration: none; /* Quita el subrayado */
-    color: #fff; /* Color del texto */
-    font-size: 18px; /* Tamaño de la fuente */
-    font-weight: bold; /* Estilo de fuente en negrita */
-    background-color: #ff4d4d; /* Color de fondo rojo */
-    padding: 6px 10px; /* Espaciado interno */
-    border-radius: 20px; /* Bordes redondeados */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra */
-    transition: all 0.3s; /* Transición suave para efectos */
+    text-decoration: none; 
+    color: #fff; 
+    font-size: 18px; 
+    font-weight: bold; 
+    background-color: #ff4d4d; 
+    padding: 6px 10px; 
+    border-radius: 20px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+    transition: all 0.3s; 
   }
   
   .back-button i {
-    margin-right: 5px; /* Espacio entre el icono y el texto */
+    margin-right: 5px;
   }
   
   .back-button:hover {
-    background-color: #e63939; /* Color de fondo al pasar el mouse */
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Sombra más intensa al pasar el mouse */
+    background-color: #e63939; 
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); 
   }
   
   .hero-image {
-    max-width: 400px; /* Ajusta el tamaño de la imagen según lo necesites */
-    height: auto; /* Mantiene la relación de aspecto */
-    border-radius: 10px; /* Agrega bordes redondeados si lo deseas */
-    margin: 20px auto; /* Centra la imagen y añade margen superior */
-    display: block; /* Asegúrate de que se comporte como bloque */
+    max-width: 400px; 
+    height: auto; 
+    border-radius: 10px; 
+    margin: 20px auto; 
+    display: block; 
   }
   
   .DetailItem p {
-    margin-top: 20px; /* Espaciado entre la imagen y la descripción */
+    margin-top: 20px; 
   }
   </style>
   

@@ -94,8 +94,8 @@ export default {
 .cards {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 40px; /* Espacio entre la línea y las cards */
+  margin-top: 40px; 
   border-top: 2px solid black;
-  padding-top: 20px; /* Añade padding si deseas más espacio */
+  padding-top: 20px; 
 }
 </style>

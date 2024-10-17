@@ -83,10 +83,10 @@
         }
       },
       goToFirstPage() {
-        this.$emit('page-changed', 1); // Cambiar a la página 1
+        this.$emit('page-changed', 1); // Cambiar a la primer pag....
       },
       goToLastPage() {
-        this.$emit('page-changed', this.totalPages); // Cambiar a la última página
+        this.$emit('page-changed', this.totalPages); // Cambiar a la ult pag.....
       },
     },
   };
@@ -104,24 +104,24 @@
     padding: 5px 10px;
     cursor: pointer;
     border: none;
-    border-radius: 20px; /* Hace que los botones sean circulares */
+    border-radius: 20px; 
     position: relative; /* Necesario para el pseudo-elemento */
     transition: transform 0.2s; /* Efecto de transición suave */
   }
   
   .nav-button {
-    background-color: #fa0c0cb8; /* Color del botón de navegación */
+    background-color: #fa0c0cb8; 
     color: white;
     font-weight: bold;
   }
   
   button.active {
-    background-color: #fa0c0cb8; /* Color del botón activo */
+    background-color: #fa0c0cb8; 
     color: white;
     font-weight: bold;
-    border-radius: 50%; /* Hace que el botón activo sea circular */
-    width: 40px; /* Ajusta el tamaño del botón activo */
-    height: 40px; /* Ajusta el tamaño del botón activo */
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
   }
   
   .hover-indicator {
@@ -130,8 +130,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(128, 128, 128, 0.5); /* Fondo gris para el hover */
-    border-radius: 50%; /* Hace que el fondo sea circular */
+    background-color: rgba(128, 128, 128, 0.5); 
+    border-radius: 50%; 
     opacity: 0;
     transition: opacity 0.2s;
   }
@@ -141,12 +141,12 @@
   }
   
   button:hover {
-    transform: scale(1.1); /* Aumenta el tamaño del botón en hover */
+    transform: scale(1.1); 
   }
   
   .ellipsis {
-    font-size: 20px; /* Tamaño más grande para los puntos suspensivos */
-    margin: 0 10px; /* Espaciado alrededor de los puntos */
+    font-size: 20px;
+    margin: 0 10px;
   }
   
   button:disabled {

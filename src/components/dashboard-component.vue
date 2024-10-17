@@ -85,7 +85,7 @@ const toggleFavorite = (hero, isFavorite) => {
 }
 
 .menu-list {
-  padding-top: 0px; /* Ajusta este valor para mover las opciones hacia abajo */
+  padding-top: 0px; 
 }
 
 .menu-item {
@@ -102,20 +102,20 @@ const toggleFavorite = (hero, isFavorite) => {
 }
 
 .menu-item-content v-icon {
-  margin-right: 10px; /* Espacio entre el ícono y el texto */
+  margin-right: 10px; 
 }
 
 .toolbar-title {
-  flex-grow: 1; /* Permite centrar la imagen en la barra */
+  flex-grow: 1; /* centra la imagen en la barra */
   display: flex;
   justify-content: center;
 }
 
 .marvel-logo {
-  height: 40px; /* Ajusta el tamaño de la imagen según necesites */
+  height: 40px; 
 }
 
 .dashboard-content {
-  padding: 20px; /* Espaciado interno */
+  padding: 20px; 
 }
 </style>

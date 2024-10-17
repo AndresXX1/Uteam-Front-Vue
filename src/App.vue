@@ -63,24 +63,24 @@ body {
 #app {
   height: 100%;
   width: 100%;
-  overflow: auto; /* Permitir desplazamiento */
+  overflow: auto; 
 }
 
 .landing-page {
-  background: none; /* Sin fondo en la landing page */
+  background: none; 
 }
 
 #app:not(.landing-page) {
   background-image: url('https://i.pinimg.com/474x/60/47/41/604741043cfea2e37f0a55332d98ed98.jpg');
-  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* No repetir la imagen */
-  background-attachment: fixed; /* Fija la imagen al fondo */
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
 }
 
 @media screen and (max-width: 768px) {
   #app:not(.landing-page) {
-    background-size: contain; /* Ajusta el tamaño en pantallas más pequeñas */
+    background-size: contain; 
   }
 }
 </style>

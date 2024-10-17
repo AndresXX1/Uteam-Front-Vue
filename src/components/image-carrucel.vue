@@ -11,6 +11,7 @@
           @click="goToImage(index)"
         ></span>
       </div>
+      
       <div v-if="showModal" class="modal" @click.self="closeModal">
         <div class="modal-content">
           <img :src="images[modalIndex]" alt="Superhéroe" class="modal-image" />
@@ -55,7 +56,7 @@
       };
   
       const openModal = (index) => {
-        modalIndex.value = index; // Guarda el índice de la imagen que se va a mostrar en el modal
+        modalIndex.value = index; //guarda el indice de la imagen que se va a mostrar en el modal el modal es la ventana emergente..
         showModal.value = true;
       };
   
@@ -97,7 +98,7 @@
     height: 100%;
     object-fit: cover;
     transition: opacity 0.5s ease-in-out;
-    cursor: pointer; /* Cambia el cursor al pasar sobre la imagen */
+    cursor: pointer; 
   }
   
   .nav-button {
@@ -166,8 +167,8 @@
   
   .modal-content {
     position: relative;
-    width: 800px; /* Ancho fijo para la ventana emergente */
-    height: 600px; /* Alto fijo para la ventana emergente */
+    width: 800px; 
+    height: 600px; 
     display: flex;
     align-items: center;
     justify-content: center;

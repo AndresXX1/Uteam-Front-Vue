@@ -94,8 +94,8 @@ export default {
 }
 
 .hero-name {
-  font-family: 'Comic Sans MS', cursive, sans-serif; /* Fuente Comic Sans */
-  color: black; /* Color negro */
+  font-family: 'Comic Sans MS', cursive, sans-serif; 
+  color: black;
 }
 
 .no-underline {

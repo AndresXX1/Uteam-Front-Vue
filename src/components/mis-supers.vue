@@ -48,7 +48,7 @@
   
   const removeFavorite = (hero) => {
     favoritesStore.removeFavorite(hero);
-    // Si el héroe eliminado estaba en la página actual, actualiza la lista
+    // Si el super eliminado estaba en la pag actual, actualiza la lista
     if (paginatedFavorites.value.length === 0 && currentPage.value > 1) {
       currentPage.value--; // Volver a la página anterior si es necesario
     }
@@ -57,9 +57,9 @@
   
   <style scoped>
   .title {
-    font-family: 'Comic Sans MS', cursive, sans-serif; /* Cambia a Comic Sans */
-    text-align: center; /* Centra el título */
-    margin-bottom: 20px; /* Espaciado inferior */
+    font-family: 'Comic Sans MS', cursive, sans-serif; 
+    text-align: center; 
+    margin-bottom: 20px; 
   }
   
   .cards {
