@@ -1,29 +1,86 @@
 <template>
-  <div id="app">
-    <DashboardComponent />
+  <div id="app" :class="{ 'landing-page': isLandingPage }">
+    <DashboardComponent 
+      v-if="!isLandingPage" 
+      :favorites="favorites" 
+      @toggle-favorite="toggleFavorite" 
+    />
+    <router-view v-if="isLandingPage" />
   </div>
 </template>
 
 <script>
-import DashboardComponent from './components/dashboard-component.vue'
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import DashboardComponent from './components/dashboard-component.vue';
 
 export default {
   components: {
-    DashboardComponent
+    DashboardComponent,
+  },
+  setup() {
+    const favorites = ref([]);
+    const route = useRoute();
+
+    // Computed property para verificar si estamos en la landing page
+    const isLandingPage = computed(() => route.path === '/');
+
+    const toggleFavorite = (hero, remove = false) => {
+      if (remove) {
+        favorites.value = favorites.value.filter(f => f.id !== hero.id);
+        console.log('Héroe eliminado de favoritos:', hero);
+      } else {
+        if (!favorites.value.some(f => f.id === hero.id)) {
+          favorites.value.push(hero);
+          console.log('Héroe añadido a favoritos:', hero);
+        }
+      }
+    };
+
+    return {
+      favorites,
+      isLandingPage,
+      toggleFavorite,
+    };
   }
 }
 </script>
 
 <style>
+/* Estilos globales */
 @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400;700&display=swap');
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family: 'Avenir', sans-serif;
 }
 
 #app {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  height: 100%;
+  width: 100%;
+  overflow: auto; /* Permitir desplazamiento */
+}
+
+.landing-page {
+  background: none; /* Sin fondo en la landing page */
+}
+
+#app:not(.landing-page) {
+  background-image: url('https://i.pinimg.com/474x/60/47/41/604741043cfea2e37f0a55332d98ed98.jpg');
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repetir la imagen */
+  background-attachment: fixed; /* Fija la imagen al fondo */
+}
+
+@media screen and (max-width: 768px) {
+  #app:not(.landing-page) {
+    background-size: contain; /* Ajusta el tamaño en pantallas más pequeñas */
+  }
 }
 </style>
