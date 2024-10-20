@@ -57,8 +57,8 @@ export default {
     async fetchHeroDetails() {
       const id = this.$route.params.id;
       const timestamp = new Date().getTime();
-      const publicKey = '4a235a79b53ce485320e7f3e22d7887d';
-      const privateKey = '9ce72cfdef977a6b40d50a555878ab56da4343ee';
+      const publicKey = '377787adefb377076347bd2546aebac7';
+      const privateKey = '2100d4b9eb64127cb73a54a7638cb0910a93591c';
       const hash = md5(timestamp + privateKey + publicKey);
 
       const url = `https://gateway.marvel.com/v1/public/characters/${id}?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;

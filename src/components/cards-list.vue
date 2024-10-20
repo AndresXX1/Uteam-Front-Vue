@@ -1,7 +1,7 @@
 <template>
   <div>
     <SearchBar @search="filterHeroes" />
-    <div v-if="isLoading">
+    <div v-if="isLoading || loadedHeroes < totalHeroes">
       <p>Cargando héroes: {{ loadedHeroes }}/{{ totalHeroes }}</p>
       <div class="progress-bar">
         <div
@@ -38,24 +38,26 @@ import SearchBar from './searchbar.vue';
 import axios from 'axios';
 import md5 from 'md5';
 import { useFavoritesStore } from '../stores/favorites';
+import { useHeroesStore } from '../stores/heroesStore';
 
 export default {
   components: { CardItem, Pagination, SearchBar },
   data() {
     return {
-      heroes: [],
-      filteredHeroes: [],
       currentPage: 1,
       limit: 6,
-      totalHeroes: 1560,
-      loadedHeroes: 0,
-      maxFetchLimit: 100,
-      initialFetchLimit: 30,
       searchQuery: '',
-      isLoading: true,
     };
   },
   computed: {
+    heroesStore() {
+      return useHeroesStore();
+    },
+    filteredHeroes() {
+      return this.heroesStore.heroes.filter(hero => 
+        hero.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
     totalPages() {
       return Math.ceil(this.filteredHeroes.length / this.limit);
     },
@@ -63,57 +65,63 @@ export default {
       const start = (this.currentPage - 1) * this.limit;
       return this.filteredHeroes.slice(start, start + this.limit);
     },
+    loadedHeroes() {
+      return this.heroesStore.loadedHeroes;
+    },
+    totalHeroes() {
+      return this.heroesStore.totalHeroes;
+    },
+    isLoading() {
+      return this.heroesStore.isLoading;
+    },
   },
   created() {
     this.fetchHeroes();
   },
   methods: {
     async fetchHeroes() {
+      // Verificar si ya se han cargado héroes
+      if (this.heroesStore.heroes.length > 0) {
+        return; // No hacer nada si ya se han cargado
+      }
+
+      this.heroesStore.setLoading(true);
       const timestamp = new Date().getTime();
-      const publicKey = '4a235a79b53ce485320e7f3e22d7887d';
-      const privateKey = '9ce72cfdef977a6b40d50a555878ab56da4343ee';
+      const publicKey = '377787adefb377076347bd2546aebac7';
+      const privateKey = '2100d4b9eb64127cb73a54a7638cb0910a93591c';
       const hash = md5(timestamp + privateKey + publicKey);
 
       // Primera llamada para obtener 30 héroes
-      const initialUrl = `https://gateway.marvel.com/v1/public/characters?limit=${this.initialFetchLimit}&offset=0&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
-      
+      const initialUrl = `https://gateway.marvel.com/v1/public/characters?limit=30&offset=0&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
+
       try {
         const initialResponse = await axios.get(initialUrl);
         const initialHeroes = initialResponse.data.data.results;
+        this.heroesStore.setHeroes(initialHeroes);
 
-        this.heroes.push(...initialHeroes);
-        this.loadedHeroes += initialHeroes.length;
-        this.filteredHeroes = this.heroes;
-        console.log(`Cargados héroes: ${initialHeroes.length}, Total: ${this.loadedHeroes}`);
-      } catch (error) {
-        console.error('Error fetching initial heroes:', error);
-      }
+        // Incrementar el contador de héroes cargados
+        this.heroesStore.incrementLoadedHeroes(initialHeroes.length);
 
-      // Llamadas subsecuentes para obtener el resto de los héroes
-      for (let i = 1; this.loadedHeroes < this.totalHeroes; i++) {
-        const offset = i * this.maxFetchLimit;
-        const url = `https://gateway.marvel.com/v1/public/characters?limit=${this.maxFetchLimit}&offset=${offset}&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
+        // Llamadas subsecuentes para obtener el resto de los héroes
+        for (let i = 1; this.heroesStore.loadedHeroes < this.heroesStore.totalHeroes; i++) {
+          const offset = i * 100;
+          const url = `https://gateway.marvel.com/v1/public/characters?limit=100&offset=${offset}&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
 
-        try {
           const response = await axios.get(url);
           const newHeroes = response.data.data.results;
-
-          this.heroes.push(...newHeroes);
-          this.loadedHeroes += newHeroes.length;
-          this.filteredHeroes = this.heroes;
-          console.log(`Cargados héroes: ${newHeroes.length}, Total: ${this.loadedHeroes}`);
+          this.heroesStore.heroes.push(...newHeroes);
+          this.heroesStore.incrementLoadedHeroes(newHeroes.length);
           
-          // Esperar un poco antes de cargar el siguiente grupo
           await new Promise(resolve => setTimeout(resolve, 500)); // espera de 0.5 segundos
-        } catch (error) {
-          console.error('Error fetching subsequent heroes:', error);
         }
+      } catch (error) {
+        console.error('Error fetching heroes:', error);
+      } finally {
+        this.heroesStore.setLoading(false);
       }
-      this.isLoading = false; // cambia el estado de carga una vez completado
     },
     filterHeroes(query) {
-      this.searchQuery = query.toLowerCase();
-      this.filteredHeroes = this.heroes.filter(hero => hero.name.toLowerCase().includes(this.searchQuery));
+      this.searchQuery = query;
       this.currentPage = 1; // reinicia la página al buscar
     },
     changePage(page) {
