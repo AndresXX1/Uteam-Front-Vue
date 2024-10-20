@@ -22,7 +22,7 @@ export default {
     const favorites = ref([]);
     const route = useRoute();
 
-    // Computed property para verificar si estamos en la landing page
+    //computed property para verificar si estamos en la landing page
     const isLandingPage = computed(() => route.path === '/');
 
     const toggleFavorite = (hero, remove = false) => {
@@ -78,9 +78,11 @@ body {
   background-attachment: fixed; 
 }
 
+
 @media screen and (max-width: 768px) {
   #app:not(.landing-page) {
-    background-size: contain; 
+    background-attachment: scroll; 
+    background-size: cover;
   }
 }
 </style>
