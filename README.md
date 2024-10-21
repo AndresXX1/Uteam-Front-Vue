@@ -64,3 +64,4 @@ Se requiere:
 
 ## 🌐 Aplicaccion desplegada
 
+https://uteam-front-vue.vercel.app/
