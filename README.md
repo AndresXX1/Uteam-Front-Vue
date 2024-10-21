@@ -5,7 +5,7 @@
 * 📁 Utiliza el metodo CRUD para (Created, Read, Update, Delete)
 * 🪟 Realizada con Node.js, Vue, Pina, axios, y estilada con css puro
 
- <img width="1459" alt="home img" src="home.jpg"> 
+ <img width="1459" alt="home img" src="./home.jpg"> 
 
 ## 🌟 Quick Start
 
