@@ -13,9 +13,6 @@
 
 Se requiere desarrollar una pequeña web con el framework de VUEJS
 
-El objetivo de esta prueba es poder evaluar la creación e interacción de componentes de Angular y la conexión con servicios Api Rest.
- 
-
 Se requiere:
 
 1.    Generar una interfaz de usuario donde exista a lo menos 3 componentes anidados entre sí.
