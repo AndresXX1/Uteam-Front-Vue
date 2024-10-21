@@ -40,7 +40,7 @@ const favoritesStore = useFavoritesStore();
 const favorites = computed(() => favoritesStore.favorites);
 
 const currentPage = ref(1);
-const itemsPerPage = 9;
+const itemsPerPage = 6; // Cambiado a 6
 
 const totalPages = computed(() => Math.ceil(favorites.value.length / itemsPerPage));
 

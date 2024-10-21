@@ -71,7 +71,7 @@ body {
 }
 
 #app:not(.landing-page) {
-  background-image: url('https://i.pinimg.com/474x/60/47/41/604741043cfea2e37f0a55332d98ed98.jpg');
+  background-image: url('https://imgs.search.brave.com/lxY1ZEVMHgRp7iZDxhSHqJjlBExpDKJxKFjr6r3YflM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2Y2L2Ji/Lzc5L2Y2YmI3OWU0/ZGI0NzlkMzNkNzM3/YzQ1MDM0MjJlNTU4/LmpwZw');
   background-size: cover; 
   background-position: center; 
   background-repeat: no-repeat; 

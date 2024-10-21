@@ -10,6 +10,12 @@
         ></div>
       </div>
     </div>
+    <div v-else>
+      <p>
+        <span role="img" aria-label="check">✅</span>
+        Todos los {{ totalHeroes }} héroes han sido cargados.
+      </p>
+    </div>
     <div class="cards">
       <CardItem
         v-for="hero in paginatedHeroes"
@@ -69,7 +75,7 @@ export default {
       return this.heroesStore.loadedHeroes;
     },
     totalHeroes() {
-      return this.heroesStore.totalHeroes;
+      return 1524; // Puedes ajustar este número según sea necesario
     },
     isLoading() {
       return this.heroesStore.isLoading;
@@ -103,7 +109,7 @@ export default {
         this.heroesStore.incrementLoadedHeroes(initialHeroes.length);
 
         // Llamadas subsecuentes para obtener el resto de los héroes
-        for (let i = 1; this.heroesStore.loadedHeroes < this.heroesStore.totalHeroes; i++) {
+        for (let i = 1; this.heroesStore.loadedHeroes < this.totalHeroes; i++) {
           const offset = i * 100;
           const url = `https://gateway.marvel.com/v1/public/characters?limit=100&offset=${offset}&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`;
 
@@ -111,7 +117,10 @@ export default {
           const newHeroes = response.data.data.results;
           this.heroesStore.heroes.push(...newHeroes);
           this.heroesStore.incrementLoadedHeroes(newHeroes.length);
-          
+
+          // Detener si se alcanza 1524 héroes
+          if (this.heroesStore.loadedHeroes >= 1524) break;
+
           await new Promise(resolve => setTimeout(resolve, 500)); // espera de 0.5 segundos
         }
       } catch (error) {

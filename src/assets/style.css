@@ -10,19 +10,20 @@ html, body {
 }
 
 .v-application {
-  background-image: url('https://i.pinimg.com/474x/60/47/41/604741043cfea2e37f0a55332d98ed98.jpg');
+  background-image: url('https://imgs.search.brave.com/lxY1ZEVMHgRp7iZDxhSHqJjlBExpDKJxKFjr6r3YflM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2Y2L2Ji/Lzc5L2Y2YmI3OWU0/ZGI0NzlkMzNkNzM3/YzQ1MDM0MjJlNTU4/LmpwZw');
   background-size: cover; 
   background-position: center center; 
   background-repeat: no-repeat;
-  background-attachment: fixed; 
-  min-height: 100vh;
+  min-height: 100vh; /* Se asegura de cubrir toda la altura de la ventana */
+  height: 100%; /* Asegura que ocupe el 100% del contenedor */
   width: 100%;
 }
 
-/* responsividad */
+/* Responsividad */
 @media (max-width: 768px) {
   .v-application {
-      background-attachment: scroll; 
-      background-size: cover; 
+    background-attachment: scroll; 
+    background-size: cover; 
+    height: 100%; /* Mantiene la altura al 100% en pantallas pequeñas */
   }
 }
